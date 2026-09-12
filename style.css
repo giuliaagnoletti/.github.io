@@ -31,9 +31,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: inherit;
-}
+a { color: inherit; }
 
 .page {
   max-width: 780px;
@@ -60,10 +58,7 @@ a {
   letter-spacing: 0.02em;
 }
 
-.nav {
-  display: flex;
-  gap: 28px;
-}
+.nav { display: flex; gap: 28px; }
 
 .nav a {
   text-decoration: none;
@@ -73,9 +68,7 @@ a {
 }
 
 .nav a:hover,
-.nav a:focus-visible {
-  color: var(--accent);
-}
+.nav a:focus-visible { color: var(--accent); }
 
 .nav-toggle {
   display: none;
@@ -97,9 +90,7 @@ a {
 /* -------------------------------------------------
    Hero
 ------------------------------------------------- */
-.hero {
-  padding: 56px 0 88px;
-}
+.hero { padding: 56px 0 88px; }
 
 .kicker {
   margin: 0 0 18px;
@@ -150,7 +141,7 @@ a {
 }
 
 .section-title {
-  margin: 0 0 32px;
+  margin: 0 0 12px;
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 420;
@@ -158,19 +149,19 @@ a {
   color: var(--text);
 }
 
-.prose {
-  max-width: var(--measure);
-}
-
-.prose p {
-  margin: 0 0 18px;
+.section-note {
+  margin: 0 0 32px;
   color: var(--text-dim);
+  font-size: 14px;
 }
 
+.prose { max-width: var(--measure); }
+
+.prose p { margin: 0 0 18px; color: var(--text-dim); }
 .prose p:last-child { margin-bottom: 0; }
 
 /* -------------------------------------------------
-   Project entries
+   Project entries (accordion)
 ------------------------------------------------- */
 .entries {
   list-style: none;
@@ -179,12 +170,23 @@ a {
 }
 
 .entry {
-  padding: 28px 0;
   border-bottom: 1px solid var(--line);
 }
 
-.entry:first-child { padding-top: 0; }
 .entry:last-child { border-bottom: none; }
+
+.entry-toggle {
+  position: relative;
+  padding: 28px 44px 28px 0;
+  cursor: pointer;
+}
+
+.entry:first-child .entry-toggle { padding-top: 0; }
+
+.entry-toggle:hover .entry-head h3,
+.entry-toggle:focus-visible .entry-head h3 {
+  color: var(--accent);
+}
 
 .entry-head {
   display: flex;
@@ -199,6 +201,7 @@ a {
   font-family: var(--font-display);
   font-weight: 560;
   font-size: 1.3rem;
+  transition: color 0.15s ease;
 }
 
 .entry-year {
@@ -207,7 +210,7 @@ a {
   white-space: nowrap;
 }
 
-.entry p {
+.entry-summary {
   max-width: var(--measure);
   margin: 0 0 10px;
   color: var(--text-dim);
@@ -218,6 +221,62 @@ a {
   font-size: 14px;
   color: var(--accent) !important;
 }
+
+.entry-chevron {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-right: 1.5px solid var(--text-dim);
+  border-bottom: 1.5px solid var(--text-dim);
+  transform: rotate(45deg);
+  transition: transform 0.25s ease;
+}
+
+.entry-toggle[aria-expanded="true"] .entry-chevron {
+  transform: rotate(-135deg);
+  top: 10px;
+}
+
+.entry-panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.entry-panel-inner {
+  padding: 4px 0 32px;
+  max-width: var(--measure);
+}
+
+.entry-image {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin-bottom: 18px;
+  background: var(--bg-raised);
+}
+
+.entry-panel-inner p {
+  margin: 0 0 16px;
+  color: var(--text-dim);
+}
+
+.entry-link {
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  color: var(--text);
+  padding-bottom: 2px;
+  font-size: 15px;
+  transition: color 0.15s ease;
+}
+
+.entry-link:hover,
+.entry-link:focus-visible { color: var(--accent); }
 
 /* -------------------------------------------------
    Skills
@@ -245,11 +304,7 @@ a {
 /* -------------------------------------------------
    Contact
 ------------------------------------------------- */
-.contact-links {
-  display: flex;
-  gap: 28px;
-  margin-top: 20px;
-}
+.contact-links { display: flex; gap: 28px; margin-top: 20px; }
 
 .contact-links a {
   text-decoration: none;
@@ -261,9 +316,7 @@ a {
 }
 
 .contact-links a:hover,
-.contact-links a:focus-visible {
-  color: var(--accent);
-}
+.contact-links a:focus-visible { color: var(--accent); }
 
 /* -------------------------------------------------
    Footer
@@ -281,7 +334,8 @@ a {
    Focus visibility
 ------------------------------------------------- */
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+.entry-toggle:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -306,14 +360,8 @@ button:focus-visible {
     border-bottom: 1px solid var(--line);
   }
 
-  .skills {
-    grid-template-columns: 1fr;
-  }
-
+  .skills { grid-template-columns: 1fr; }
   .skills li:nth-child(odd) { padding-right: 0; }
 
-  .entry-head {
-    flex-direction: column;
-    gap: 4px;
-  }
+  .entry-head { flex-direction: column; gap: 4px; }
 }
