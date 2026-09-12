@@ -41,3 +41,36 @@ document.querySelectorAll(".entry-toggle").forEach((entryToggle) => {
     }
   });
 });
+
+// Carosello foto per ogni progetto
+document.querySelectorAll("[data-carousel]").forEach((carousel) => {
+  const track = carousel.querySelector(".carousel-track");
+  const slides = carousel.querySelectorAll(".carousel-slide");
+  const dots = carousel.querySelectorAll(".dot");
+  const prev = carousel.querySelector(".prev");
+  const next = carousel.querySelector(".next");
+  let index = 0;
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle("active", i === index));
+  }
+
+  prev.addEventListener("click", (e) => {
+    e.stopPropagation();
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
+
+  next.addEventListener("click", (e) => {
+    e.stopPropagation();
+    index = (index + 1) % slides.length;
+    update();
+  });
+
+  dots.forEach((d, i) => d.addEventListener("click", (e) => {
+    e.stopPropagation();
+    index = i;
+    update();
+  }));
+});
