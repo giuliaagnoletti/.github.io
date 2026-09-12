@@ -383,3 +383,80 @@ button:focus-visible,
 
   .entry-head { flex-direction: column; gap: 4px; }
 }
+
+/* Carosello foto progetto */
+.carousel {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.carousel-track {
+  display: flex;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  margin: 0;
+}
+
+.carousel-slide img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-raised);
+}
+
+.carousel-slide figcaption {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: calc(50% - 14px);
+  transform: translateY(-50%);
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  background: rgba(20, 22, 26, 0.7);
+  color: var(--text);
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-arrow.prev { left: 8px; }
+.carousel-arrow.next { right: 8px; }
+
+.carousel-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 7px;
+  justify-content: center;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--line);
+  display: block;
+}
+
+.dot.active { background: var(--accent); }
