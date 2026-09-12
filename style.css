@@ -250,14 +250,32 @@ a { color: inherit; }
   max-width: var(--measure);
 }
 
-.entry-image {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  border-radius: 4px;
-  display: block;
+.entry-client {
+  margin: -4px 0 10px;
+  color: var(--accent);
+  font-size: 13px;
+}
+
+.entry-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
   margin-bottom: 18px;
+}
+
+.entry-gallery img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 4px;
   background: var(--bg-raised);
+}
+
+@media (max-width: 640px) {
+  .entry-gallery {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
 }
 
 .entry-panel-inner p {
